@@ -11,15 +11,25 @@ export function logIn(loginRequest) {
 
 export function requestEmailCode(email) {
   return request({
-    url: API_URL + "/auth-email/" + email,
+    url: API_URL + "/auth-email/",
     method: "POST",
+    body: JSON.stringify(email),
   });
 } //이메일 인증 요청
 
+export function passwordRequestEmailCode(passwordRequest) {
+  return request({
+    url: API_URL + "/auth-email/",
+    method: "POST",
+    body: JSON.stringify(passwordRequest),
+  });
+} //비밀번호 재설정하기 - 이메일 인증 요청
+
 export function requestEmailVerify(code) {
   return request({
-    url: API_URL + "/auth-email/" + code,
+    url: API_URL + "/auth-email-confirm/",
     method: "GET",
+    body: JSON.stringify(code),
   });
 } //이메일 인증 확인 요청
 
@@ -30,6 +40,14 @@ export function signUp(signUpRequest) {
     body: JSON.stringify(signUpRequest),
   });
 } //회원가입 요청
+
+export function resetPassword(passwordRequest) {
+  return request({
+    url: API_URL + "/password-reset",
+    method: "POST",
+    body: JSON.stringify(passwordRequest),
+  });
+} //비밀번호 재설정하기 요청
 
 class AuthService {}
 export default new AuthService();

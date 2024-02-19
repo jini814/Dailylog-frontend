@@ -2,31 +2,26 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import {
-  requestEmailCode,
+  passwordRequestEmailCode,
   requestEmailVerify,
-  signUp,
+  resetPassword,
 } from "../../Service/AuthService";
 
 import styles from "./Auth.module.css";
-import { IoMdFemale, IoMdMale } from "react-icons/io";
 
-function SignUp() {
+function PasswordReset() {
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
-  const [signUpForm, setSignUpForm] = useState({
+  const [passwordForm, setPasswordForm] = useState({
     email: "",
     password: "",
     name: "",
-    sex: "",
-    birth: "",
-    nickname: "",
   });
   const [email, setEmail] = useState("");
   const [emailCode, setEmailCode] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [birth, setBirth] = useState("");
 
   //확인 메세지
   const [passwordMessage, setPasswordMessage] = useState("");
@@ -67,8 +62,8 @@ function SignUp() {
       setIsCorrectEmail(false);
     } else {
       setIsCorrectEmail(true);
-      setSignUpForm({
-        ...signUpForm,
+      setPasswordForm({
+        ...passwordForm,
         email: e.target.value,
       });
     }
@@ -92,8 +87,8 @@ function SignUp() {
       setPasswordMessage("");
       setIsCorrectPassword(true);
 
-      setSignUpForm({
-        ...signUpForm,
+      setPasswordForm({
+        ...passwordForm,
         password: passwordInput,
       });
     }
@@ -107,7 +102,7 @@ function SignUp() {
       return;
     }
     setPasswordConfirm(e.target.value);
-    if (signUpForm.password === passwordConfirmInput) {
+    if (passwordForm.password === passwordConfirmInput) {
       setPasswordConfirmMessage("");
       setIsPasswordConfirm(true);
     } else {
@@ -120,40 +115,22 @@ function SignUp() {
     setEmailCode(e.target.value);
   };
 
-  //생년월일 입력하기
-  const handleBirthChange = (e) => {
-    const birthInput = e.target.value;
-    if (birthInput.includes(" ") || birthInput.length > 8) {
-      e.preventDefault();
-      return;
-    }
-    const formattedBirth = birthInput.replace(
-      /(\d{4})(\d{2})(\d{2})/,
-      "$1-$2-$3"
-    );
-    setBirth(formattedBirth); // 생년월일 입력값 업데이트
-    setSignUpForm({
-      ...signUpForm,
-      birth: formattedBirth, // signUpForm의 birth도 업데이트
-    });
-  };
-
   const handleFormChange = (e) => {
     const changeField = e.target.name;
     if (changeField.includes(" ")) {
       e.preventDefault();
       return;
     }
-    setSignUpForm({
-      ...signUpForm,
+    setPasswordForm({
+      ...passwordForm,
       [changeField]: e.target.value,
     });
   };
 
   // 인증번호 전송 클릭 시
   const onEmailCodeClick = () => {
-    if (isCorrectEmail) {
-      requestEmailCode(signUpForm.email)
+    if (isCorrectEmail && passwordForm.name) {
+      passwordRequestEmailCode(passwordForm.email, passwordForm.name)
         .then((response) => {
           alert(response.message);
           setIsCodeSent(true);
@@ -163,7 +140,7 @@ function SignUp() {
           alert(`인증번호 전송에 실패하였습니다. ${e.message}`);
         });
     } else {
-      alert("올바른 이메일 형식을 입력해주세요.");
+      alert("올바른 이메일 형식 및 이름을 입력해주세요.");
       setIsCodeSent(true); //ㅌㅔ스트용 삭제 요망 !!!!!!!!!!!!!!!
     }
   };
@@ -187,25 +164,19 @@ function SignUp() {
     }
   };
 
-  //회원가입 요청하기
+  //비밀번호 재설정하기
   const handleFormSubmit = (e) => {
-    console.log(signUpForm);
     e.preventDefault();
     if (isPasswordConfirm && isEmailVerified) {
-      signUp(signUpForm)
+      resetPassword(passwordForm)
         .then((response) => {
-          if (!response) {
-            console.log(e);
-            alert(`회원가입에 실패하였습니다. ${response}`);
-          } else {
-            alert("회원가입이 완료되었습니다. 환영합니다!");
-            navigate(-1);
-          }
+          console.log(response);
+          alert("비밀번호 재설정이 완료되었습니다. 다시 로그인해주세요");
+          navigate(-1);
         })
         .catch((e) => {
           console.log(e);
-          alert("회원가입에 실패하였습니다. 다시 시도해주세요.");
-          window.location.reload();
+          alert("비밀번호 재설정에 실패하였습니다. 다시 시도해주세요.");
         });
     } else {
       alert("이메일 인증이 필요합니다.");
@@ -216,8 +187,19 @@ function SignUp() {
     <div className={styles.page}>
       {isMobile ? (
         <div className={styles.mobilePage}>
-          <p className={styles.signUp}>회원가입</p>
+          <p className={styles.signUp}>비밀번호 찾기</p>
           <form className={styles.mobileSignUpForm} onSubmit={handleFormSubmit}>
+            <p className={styles.formHeader}>사용자 이름</p>
+            <input
+              className={styles.mobileFormContent}
+              type='text'
+              id='name'
+              name='name'
+              placeholder='홍길동'
+              required
+              value={passwordForm.name}
+              onChange={handleFormChange}
+            />
             <p className={styles.formHeader}>이메일</p>
             <input
               className={styles.mobileFormContent}
@@ -241,7 +223,7 @@ function SignUp() {
                       name='verificationCode'
                       placeholder='인증번호 입력'
                       required
-                      value={signUpForm.verificationCode}
+                      value={passwordForm.verificationCode}
                       onChange={handleEmailCodeChange}
                     />
                     <p className={styles.formEmailContent}>
@@ -263,105 +245,57 @@ function SignUp() {
                 </button>
               </>
             )}
-            <p className={styles.formHeader}>비밀번호</p>
-            <input
-              className={styles.mobileFormContent}
-              type='password'
-              id='password'
-              name='password'
-              placeholder='비밀번호 입력'
-              required
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <input
-              className={styles.mobileFormContent}
-              type='password'
-              id='password'
-              name='password'
-              placeholder='비밀번호 확인'
-              required
-              value={passwordConfirm}
-              onChange={handlePasswordConfirmChange}
-            />
-            {passwordMessage && (
-              <p className={styles.formNotice}>{passwordMessage}</p>
+            {isEmailVerified && (
+              <>
+                <p className={styles.formHeader}>비밀번호</p>
+                <input
+                  className={styles.mobileFormContent}
+                  type='password'
+                  id='password'
+                  name='password'
+                  placeholder='비밀번호 입력'
+                  required
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <input
+                  className={styles.mobileFormContent}
+                  type='password'
+                  id='password'
+                  name='password'
+                  placeholder='비밀번호 확인'
+                  required
+                  value={passwordConfirm}
+                  onChange={handlePasswordConfirmChange}
+                />
+                {passwordMessage && (
+                  <p className={styles.formNotice}>{passwordMessage}</p>
+                )}
+                {passwordConfirmMessage && (
+                  <p className={styles.formNotice}>{passwordConfirmMessage}</p>
+                )}
+                <button className={styles.longBtn} type='submit'>
+                  비밀번호 재설정하기
+                </button>
+              </>
             )}
-            {passwordConfirmMessage && (
-              <p className={styles.formNotice}>{passwordConfirmMessage}</p>
-            )}
+          </form>
+        </div>
+      ) : (
+        <div className={styles.pcPage}>
+          <p className={styles.signUp}>비밀번호 찾기</p>
+          <form className={styles.signUpForm} onSubmit={handleFormSubmit}>
             <p className={styles.formHeader}>사용자 이름</p>
             <input
-              className={styles.mobileFormContent}
+              className={styles.formContent}
               type='text'
               id='name'
               name='name'
               placeholder='홍길동'
               required
-              value={signUpForm.name}
+              value={passwordForm.name}
               onChange={handleFormChange}
             />
-            <p className={styles.formHeader}>생년월일</p>
-            <input
-              className={styles.mobileFormContent}
-              type='text'
-              id='birth'
-              name='birth'
-              placeholder='20010101'
-              required
-              value={birth}
-              onChange={handleBirthChange}
-              inputMode='numeric'
-            />
-            <p className={styles.formSexContent}>
-              <p className={styles.formSexHeader}>성별</p>
-              <input
-                className={styles.mobileFormContent}
-                type='radio'
-                id='male'
-                name='sex'
-                value='male'
-                checked={signUpForm.sex === "male"}
-                onChange={handleFormChange}
-                required
-              />
-              <label htmlFor='male' className={styles.radioLabel}>
-                남성 <IoMdMale className={styles.maleIcon} />
-              </label>
-              <input
-                className={styles.mobileFormContent}
-                type='radio'
-                id='female'
-                name='sex'
-                value='female'
-                checked={signUpForm.sex === "female"}
-                onChange={handleFormChange}
-                required
-              />
-              <label htmlFor='female' className={styles.radioLabel}>
-                여성 <IoMdFemale className={styles.femaleIcon} />
-              </label>
-            </p>
-            <p className={styles.formHeader}>닉네임</p>
-            <input
-              className={styles.mobileFormContent}
-              type='text'
-              id='nickname'
-              name='nickname'
-              placeholder='닉네임 입력'
-              required
-              value={signUpForm.nickname}
-              onChange={handleFormChange}
-            />
-            <button className={styles.longBtn} type='submit'>
-              가입하기
-            </button>
-          </form>
-        </div>
-      ) : (
-        <div className={styles.pcPage}>
-          <p className={styles.signUp}>회원가입</p>
-          <form className={styles.signUpForm} onSubmit={handleFormSubmit}>
             <p className={styles.formHeader}>이메일</p>
             <input
               className={styles.formContent}
@@ -385,7 +319,7 @@ function SignUp() {
                       name='verificationCode'
                       placeholder='인증번호 입력'
                       required
-                      value={signUpForm.verificationCode}
+                      value={passwordForm.verificationCode}
                       onChange={handleEmailCodeChange}
                     />
                     <p className={styles.formEmailContent}>
@@ -407,99 +341,40 @@ function SignUp() {
                 </button>
               </>
             )}
-            <p className={styles.formHeader}>비밀번호</p>
-            <input
-              className={styles.formContent}
-              type='password'
-              id='password'
-              name='password'
-              placeholder='비밀번호 입력'
-              required
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <input
-              className={styles.formContent}
-              type='password'
-              id='password'
-              name='password'
-              placeholder='비밀번호 확인'
-              required
-              value={passwordConfirm}
-              onChange={handlePasswordConfirmChange}
-            />
-            {passwordMessage && (
-              <p className={styles.formNotice}>{passwordMessage}</p>
+            {isEmailVerified && (
+              <>
+                <p className={styles.formHeader}>비밀번호</p>
+                <input
+                  className={styles.formContent}
+                  type='password'
+                  id='password'
+                  name='password'
+                  placeholder='비밀번호 입력'
+                  required
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <input
+                  className={styles.formContent}
+                  type='password'
+                  id='password'
+                  name='password'
+                  placeholder='비밀번호 확인'
+                  required
+                  value={passwordConfirm}
+                  onChange={handlePasswordConfirmChange}
+                />
+                {passwordMessage && (
+                  <p className={styles.formNotice}>{passwordMessage}</p>
+                )}
+                {passwordConfirmMessage && (
+                  <p className={styles.formNotice}>{passwordConfirmMessage}</p>
+                )}
+                <button className={styles.longBtn} type='submit'>
+                  비밀번호 재설정하기
+                </button>
+              </>
             )}
-            {passwordConfirmMessage && (
-              <p className={styles.formNotice}>{passwordConfirmMessage}</p>
-            )}
-            <p className={styles.formHeader}>사용자 이름</p>
-            <input
-              className={styles.formContent}
-              type='text'
-              id='name'
-              name='name'
-              placeholder='홍길동'
-              required
-              value={signUpForm.name}
-              onChange={handleFormChange}
-            />
-            <p className={styles.formHeader}>생년월일</p>
-            <input
-              className={styles.formContent}
-              type='text'
-              id='birth'
-              name='birth'
-              placeholder='20010101'
-              required
-              value={birth}
-              onChange={handleBirthChange}
-              inputMode='numeric'
-            />
-            <p className={styles.formSexContent}>
-              <p className={styles.formSexHeader}>성별</p>
-              <input
-                className={styles.formContent}
-                type='radio'
-                id='male'
-                name='sex'
-                value='male'
-                checked={signUpForm.sex === "male"}
-                onChange={handleFormChange}
-                required
-              />
-              <label htmlFor='male' className={styles.radioLabel}>
-                남성 <IoMdMale className={styles.maleIcon} />
-              </label>
-              <input
-                className={styles.formContent}
-                type='radio'
-                id='female'
-                name='sex'
-                value='female'
-                checked={signUpForm.sex === "female"}
-                onChange={handleFormChange}
-                required
-              />
-              <label htmlFor='female' className={styles.radioLabel}>
-                여성 <IoMdFemale className={styles.femaleIcon} />
-              </label>
-            </p>
-            <p className={styles.formHeader}>닉네임</p>
-            <input
-              className={styles.formContent}
-              type='text'
-              id='nickname'
-              name='nickname'
-              placeholder='닉네임 입력'
-              required
-              value={signUpForm.nickname}
-              onChange={handleFormChange}
-            />
-            <button className={styles.longBtn} type='submit'>
-              가입하기
-            </button>
           </form>
         </div>
       )}
@@ -507,4 +382,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default PasswordReset;
