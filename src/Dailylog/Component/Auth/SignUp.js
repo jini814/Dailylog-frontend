@@ -248,7 +248,12 @@ function SignUp() {
                       <p className={styles.formNotice}>
                         남은 시간: {remainingTime}초
                       </p>
-                      <p className={styles.formNoticeClick}> 재전송</p>
+                      <p
+                        className={styles.formNoticeClick}
+                        onClick={onEmailCodeClick}
+                      >
+                        재전송
+                      </p>
                     </p>
                   </>
                 )}
