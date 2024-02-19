@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-import { ACCESS_TOKEN } from "../../Constant/backendAPI";
+import {
+  ACCESS_TOKEN,
+  KAKAO_AUTH_URL,
+  NAVER_AUTH_URL,
+  GOOGLE_AUTH_URL,
+} from "../../Constant/backendAPI";
 import { logIn } from "../../Service/AuthService";
 
 import styles from "./Auth.module.css";
@@ -135,9 +140,15 @@ function Login() {
             비밀번호 찾기
           </p>
           <hr className={styles.hr} />
-          <img className={styles.socialKakao} src={kakao} alt='Kakao'></img>
-          <img className={styles.socialNaver} src={naver} alt='Naver'></img>
-          <img className={styles.socialGoogle} src={google} alt='Google'></img>
+          <a href={KAKAO_AUTH_URL}>
+            <img className={styles.socialKakao} src={kakao} alt='Kakao' />
+          </a>
+          <a href={NAVER_AUTH_URL}>
+            <img className={styles.socialNaver} src={naver} alt='Naver' />
+          </a>
+          <a href={GOOGLE_AUTH_URL}>
+            <img className={styles.socialGoogle} src={google} alt='Google' />
+          </a>
           <p className={styles.createNotice}>
             <p>계정이 없으신가요?</p>
             <p className={styles.createAuth} onClick={onClickCreateAuth}>
