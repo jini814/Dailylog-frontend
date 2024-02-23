@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import {
@@ -32,7 +32,8 @@ function Login() {
     });
   };
 
-  const handleFormSubmit = (e) => {
+  const onClickFormSubmit = (e) => {
+    console.log(loginForm);
     e.preventDefault();
     logIn(loginForm)
       .then((response) => {
@@ -69,7 +70,7 @@ function Login() {
             src={logo_image}
             alt='Logo'
           ></img>
-          <form className={styles.mobileForm} onSubmit={handleFormSubmit}>
+          <form className={styles.mobileForm} onSubmit={onClickFormSubmit}>
             <input
               className={styles.mobileFormContent}
               type='email'
@@ -111,7 +112,7 @@ function Login() {
       ) : (
         <div className={styles.pcPage}>
           <img className={styles.logoImage} src={logo_image} alt='Logo'></img>
-          <form className={styles.logInForm} onSubmit={handleFormSubmit}>
+          <form className={styles.logInForm} onSubmit={onClickFormSubmit}>
             <input
               className={styles.formContent}
               type='email'

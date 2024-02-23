@@ -91,7 +91,6 @@ function SignUp() {
     } else {
       setPasswordMessage("");
       setIsCorrectPassword(true);
-
       setSignUpForm({
         ...signUpForm,
         password: passwordInput,
@@ -151,11 +150,11 @@ function SignUp() {
   };
 
   // 인증번호 전송 클릭 시
-  const onEmailCodeClick = () => {
+  const onClickEmailCode = () => {
     if (isCorrectEmail) {
       requestEmailCode(signUpForm.email)
         .then((response) => {
-          alert(response.message);
+          alert("인증코드가 전송되었습니다. 이메일을 확인해주세요.");
           setIsCodeSent(true);
         })
         .catch((e) => {
@@ -169,18 +168,17 @@ function SignUp() {
   };
 
   //인증번호 확인 요청 클릭 시
-  const onEmailCodeVerifyClick = (e) => {
+  const onClickEmailCodeVerify = (e) => {
     if (isCodeSent) {
       requestEmailVerify(emailCode)
         .then((response) => {
           console.log(response);
-          alert(response.message);
+          alert("이메일 인증이 완료되었습니다.");
           setIsEmailVerified(true);
         })
         .catch((e) => {
           console.log(e);
           alert(`이메일 인증에 실패했습니다. ${e.errorMessage}`);
-          setIsEmailVerified(true);
         });
     } else {
       alert("이메일 인증번호 전송 버튼을 눌러주세요.");
@@ -188,10 +186,10 @@ function SignUp() {
   };
 
   //회원가입 요청하기
-  const handleFormSubmit = (e) => {
+  const onClickFormSubmit = (e) => {
     console.log(signUpForm);
     e.preventDefault();
-    if (isPasswordConfirm && isEmailVerified) {
+    if (isCorrectPassword && isPasswordConfirm && isEmailVerified) {
       signUp(signUpForm)
         .then((response) => {
           if (!response) {
@@ -217,7 +215,10 @@ function SignUp() {
       {isMobile ? (
         <div className={styles.mobilePage}>
           <p className={styles.signUp}>회원가입</p>
-          <form className={styles.mobileSignUpForm} onSubmit={handleFormSubmit}>
+          <form
+            className={styles.mobileSignUpForm}
+            onSubmit={onClickFormSubmit}
+          >
             <p className={styles.formHeader}>이메일</p>
             <input
               className={styles.mobileFormContent}
@@ -241,27 +242,27 @@ function SignUp() {
                       name='verificationCode'
                       placeholder='인증번호 입력'
                       required
-                      value={signUpForm.verificationCode}
+                      value={emailCode}
                       onChange={handleEmailCodeChange}
                     />
-                    <p className={styles.formEmailContent}>
+                    <div className={styles.formEmailContent}>
                       <p className={styles.formNotice}>
                         남은 시간: {remainingTime}초
                       </p>
                       <p
                         className={styles.formNoticeClick}
-                        onClick={onEmailCodeClick}
+                        onClick={onClickEmailCode}
                       >
                         재전송
                       </p>
-                    </p>
+                    </div>
                   </>
                 )}
                 <button
                   className={styles.longBtn}
                   type='button'
                   onClick={
-                    isCodeSent ? onEmailCodeVerifyClick : onEmailCodeClick
+                    isCodeSent ? onClickEmailCodeVerify : onClickEmailCode
                   }
                 >
                   {isCodeSent ? "인증번호 확인" : "인증번호 전송"}
@@ -366,7 +367,7 @@ function SignUp() {
       ) : (
         <div className={styles.pcPage}>
           <p className={styles.signUp}>회원가입</p>
-          <form className={styles.signUpForm} onSubmit={handleFormSubmit}>
+          <form className={styles.signUpForm} onSubmit={onClickFormSubmit}>
             <p className={styles.formHeader}>이메일</p>
             <input
               className={styles.formContent}
@@ -390,22 +391,27 @@ function SignUp() {
                       name='verificationCode'
                       placeholder='인증번호 입력'
                       required
-                      value={signUpForm.verificationCode}
+                      value={emailCode}
                       onChange={handleEmailCodeChange}
                     />
-                    <p className={styles.formEmailContent}>
+                    <div className={styles.formEmailContent}>
                       <p className={styles.formNotice}>
                         남은 시간: {remainingTime}초
                       </p>
-                      <p className={styles.formNoticeClick}> 재전송</p>
-                    </p>
+                      <p
+                        className={styles.formNoticeClick}
+                        onClick={onClickEmailCode}
+                      >
+                        재전송
+                      </p>
+                    </div>
                   </>
                 )}
                 <button
                   className={styles.longBtn}
                   type='button'
                   onClick={
-                    isCodeSent ? onEmailCodeVerifyClick : onEmailCodeClick
+                    isCodeSent ? onClickEmailCodeVerify : onClickEmailCode
                   }
                 >
                   {isCodeSent ? "인증번호 확인" : "인증번호 전송"}

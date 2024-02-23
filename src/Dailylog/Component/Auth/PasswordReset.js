@@ -13,10 +13,14 @@ function PasswordReset() {
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
-  const [passwordForm, setPasswordForm] = useState({
+  const [isSignedForm, setIsSignedForm] = useState({
     email: "",
-    password: "",
     name: "",
+  });
+  const [passwordForm, setPasswordForm] = useState({
+    email: isSignedForm.email,
+    name: isSignedForm.name,
+    password: "",
   });
   const [email, setEmail] = useState("");
   const [emailCode, setEmailCode] = useState("");
@@ -62,6 +66,10 @@ function PasswordReset() {
       setIsCorrectEmail(false);
     } else {
       setIsCorrectEmail(true);
+      setIsSignedForm({
+        ...isSignedForm,
+        email: e.target.value,
+      });
       setPasswordForm({
         ...passwordForm,
         email: e.target.value,
@@ -121,6 +129,10 @@ function PasswordReset() {
       e.preventDefault();
       return;
     }
+    setIsSignedForm({
+      ...isSignedForm,
+      [changeField]: e.target.value,
+    });
     setPasswordForm({
       ...passwordForm,
       [changeField]: e.target.value,
@@ -129,10 +141,10 @@ function PasswordReset() {
 
   // 인증번호 전송 클릭 시
   const onEmailCodeClick = () => {
-    if (isCorrectEmail && passwordForm.name) {
-      passwordRequestEmailCode(passwordForm.email, passwordForm.name)
+    if (isCorrectEmail && isSignedForm.name) {
+      passwordRequestEmailCode(isSignedForm)
         .then((response) => {
-          alert(response.message);
+          alert("인증코드가 전송되었습니다. 이메일을 확인해주세요.");
           setIsCodeSent(true);
         })
         .catch((e) => {
@@ -151,13 +163,12 @@ function PasswordReset() {
       requestEmailVerify(emailCode)
         .then((response) => {
           console.log(response);
-          alert(response.message);
+          alert("이메일 인증이 완료되었습니다.");
           setIsEmailVerified(true);
         })
         .catch((e) => {
           console.log(e);
           alert(`이메일 인증에 실패했습니다. ${e.errorMessage}`);
-          setIsEmailVerified(true);
         });
     } else {
       alert("이메일 인증번호 전송 버튼을 눌러주세요.");
@@ -167,7 +178,7 @@ function PasswordReset() {
   //비밀번호 재설정하기
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (isPasswordConfirm && isEmailVerified) {
+    if (isCorrectPassword && isPasswordConfirm && isEmailVerified) {
       resetPassword(passwordForm)
         .then((response) => {
           console.log(response);
@@ -197,7 +208,7 @@ function PasswordReset() {
               name='name'
               placeholder='홍길동'
               required
-              value={passwordForm.name}
+              value={isSignedForm.name}
               onChange={handleFormChange}
             />
             <p className={styles.formHeader}>이메일</p>
@@ -223,7 +234,7 @@ function PasswordReset() {
                       name='verificationCode'
                       placeholder='인증번호 입력'
                       required
-                      value={passwordForm.verificationCode}
+                      value={emailCode}
                       onChange={handleEmailCodeChange}
                     />
                     <p className={styles.formEmailContent}>
@@ -293,7 +304,7 @@ function PasswordReset() {
               name='name'
               placeholder='홍길동'
               required
-              value={passwordForm.name}
+              value={isSignedForm.name}
               onChange={handleFormChange}
             />
             <p className={styles.formHeader}>이메일</p>
@@ -319,7 +330,7 @@ function PasswordReset() {
                       name='verificationCode'
                       placeholder='인증번호 입력'
                       required
-                      value={passwordForm.verificationCode}
+                      value={emailCode}
                       onChange={handleEmailCodeChange}
                     />
                     <p className={styles.formEmailContent}>
