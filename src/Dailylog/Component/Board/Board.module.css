@@ -72,7 +72,7 @@ body {
 .formContent::placeholder {
   color: #bcbcbc;
 }
-.formButton {
+.formBtn {
   display: flex;
   flex-direction: row;
   align-items: center;

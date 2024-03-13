@@ -1,44 +1,15 @@
-const TestBoard2 = [
-  {
-    boardId: 4,
-    userId: 1,
-    profileImage: "",
-    title: "오늘의 날씨 맑음",
-    content: "이것은 첫 번째 게시글의 내용입니다.",
-    boardType: "text_board",
-    createdDate: "2024-02-21T12:00:00",
-    modifiedDate: "2024-02-21T12:00:00",
-    nickname: "슈가링캔디",
-    likedCount: 10,
-    commentCount: 0,
-  },
-  {
-    boardId: 5,
-    userId: 1,
-    title:
-      "안녕하세요. 오늘은 3월 13일 수요일입니다. 오늘은 안개가 많고 일교차가 커서 감기에 조심하세요.",
-    profileImage: "",
-    content: "이것은 두 번째 게시글의 내용입니다.",
-    boardType: "text_board",
-    createdDate: "2024-02-22T12:00:00",
-    modifiedDate: "2024-02-22T12:00:00",
-    nickname: "정재현",
-    likedCount: 0,
-    commentCount: 0,
-  },
-  {
-    boardId: 6,
-    userId: 1,
-    title: "세 번째 게시글",
-    profileImage: "",
-    content: "이것은 세 번째 게시글의 내용입니다.",
-    boardType: "text_board",
-    createdDate: "2024-02-23T12:00:00",
-    modifiedDate: "2024-02-23T12:00:00",
-    nickname: "옴뇸뇸",
-    likedCount: 0,
-    commentCount: 0,
-  },
-];
-
+const TestBoard2 = {
+  boardId: 4,
+  userId: 1,
+  profileImage: "",
+  title: "3월 13일 수요일 12시 52분 입니다.",
+  content:
+    "한 차례 봄비가 내린 뒤 오늘은 맑은 하늘이 드러났습니다. 서울의 낮 기온 12도 광주 14도 강릉 15도 등 어제보다 2도에서 7도 높아 오후엔 포근하겠습니다. 앞으로 기온은 점점 더 오르겠습니다. 내일과 모레 서울의 낮 기온 15도 토요일엔 16도로 평년 이맘 때 기온보다 높겠습니다. 낮 기온이 오르는 만큼 아침과 낮의 기온차는 10도 이상 벌어져 환절기 큰 기온 변화에 주의해야 합니다. 현재 전국이 맑은 가운데 대기 질도 좋습니다. 오후에도 대부분 지역 맑겠습니다. 영동과 경북 동해안 등 동쪽 지역과 중부지방에선 바람이 강하게 불겠습니다. 낮 기온은 대전 13도 대구 15도 등으로 어제보다 높겠습니다. 바다의 물결은 동해 먼 바다에서 3.5미터로 높게 일겠습니다. 내일은 중부와 경북 지역에서 초미세먼지 농도가 높아지겠습니다. 금요일까지는 대부분 지역 맑겠습니다. 기상정보였습니다.",
+  boardType: "text_board",
+  createdDate: "2024-02-21T18:00:00",
+  modifiedDate: "2024-02-21T12:00:00",
+  nickname: "슈가링캔디",
+  likedCount: 10,
+  commentCount: 0,
+};
 export default TestBoard2;

@@ -113,7 +113,7 @@ function BoardCreate() {
                 onChange={handleBoardFormChange}
               />
             </div>
-            <div className={styles.formButton}>
+            <div className={styles.formBtn}>
               <button
                 className={styles.cancelBtn}
                 type='button'

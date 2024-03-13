@@ -71,7 +71,7 @@ function Login() {
       {isMobile ? (
         <div className={styles.mobilePage}>
           <img
-            className={styles.mobileLogoImage}
+            className={styles.mobileLogoImg}
             src={logo_image}
             alt='Logo'
           ></img>
@@ -116,7 +116,7 @@ function Login() {
         </div>
       ) : (
         <div className={styles.pcPage}>
-          <img className={styles.logoImage} src={logo_image} alt='Logo'></img>
+          <img className={styles.logoImg} src={logo_image} alt='Logo'></img>
           <form className={styles.logInForm} onSubmit={onClickFormSubmit}>
             <input
               className={styles.formContent}

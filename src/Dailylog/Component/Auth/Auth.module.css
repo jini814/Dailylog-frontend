@@ -9,7 +9,7 @@
   padding: 60px 0px;
   margin: auto;
 }
-.mobileLogoImage {
+.mobileLogoImg {
   width: 40%;
   padding: 20px;
   margin: 0 0 60px;
@@ -37,7 +37,7 @@
   border: 1px solid #ccc;
   border-radius: 10px;
 }
-.logoImage {
+.logoImg {
   width: 20%;
   padding: 20px;
 }

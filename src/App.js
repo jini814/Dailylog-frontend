@@ -25,10 +25,10 @@ function App() {
         <Route path='/password-reset' element={<PasswordReset />} />
         <Route path='/signup' element={<SignUp />} />
 
-        <Route path='/*' element={<BoardListLayout />} />
-        <Route path='/*' element={<BoardPageLayout />} />
+        <Route path='/' element={<BoardListLayout />} />
+        <Route path='/board/:id' element={<BoardPageLayout />} />
 
-        <Route path='/boardcreate' element={<BoardCreate />} />
+        <Route path='/board/create' element={<BoardCreate />} />
       </Routes>
     </Router>
   );
@@ -37,9 +37,7 @@ function BoardListLayout() {
   return (
     <div className={styles.boardListPage}>
       <Navbar />
-      <Routes>
-        <Route path='/' element={<BoardList />} />
-      </Routes>
+      <BoardList />
       <Friend />
     </div>
   );
@@ -48,9 +46,7 @@ function BoardPageLayout() {
   return (
     <div className={styles.boardPage}>
       <Navbar />
-      <Routes>
-        <Route path='board/:id' element={<BoardPage />} />
-      </Routes>
+      <BoardPage />
     </div>
   );
 }

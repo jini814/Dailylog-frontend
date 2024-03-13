@@ -125,51 +125,51 @@ function BoardList() {
           <div className={styles.boardList}>
             {activeButton === "recommend" && (
               <>
-                {boardsList.map((post, index) => (
+                {boardsList.map((board, index) => (
                   <div
                     key={index}
                     className={styles.boardItem}
-                    onClick={() => onClickBoard(post.boardId)}
+                    onClick={() => onClickBoard(board.boardId)}
                   >
-                    {post.boardType === "text_board" ? (
-                      <div className={styles.listNoImageBox}>
+                    {board.boardType === "text_board" ? (
+                      <div className={styles.listNoImgBox}>
                         <img
-                          className={styles.listNoImage}
+                          className={styles.listNoImg}
                           src={no_image}
                           alt='no Image'
                         ></img>
                       </div>
                     ) : (
                       <img
-                        className={styles.listImage}
-                        src={post.storedImageUrl}
+                        className={styles.listImg}
+                        src={board.storedImgUrl}
                         alt='Image'
                       />
                     )}
                     <div className={styles.listBox}>
-                      {!post.storedImageUrl ? (
+                      {!board.storedImgUrl ? (
                         <img
-                          className={styles.listUserImage}
+                          className={styles.listUserImg}
                           src={user_image}
                           alt='user_image'
                           onClick={onClickUserProfile}
                         />
                       ) : (
                         <img
-                          className={styles.listUserImage}
-                          src={post.storedImageUrl}
+                          className={styles.listUserImg}
+                          src={board.storedImageUrl}
                           alt='Image'
                           onClick={onClickUserProfile}
                         />
                       )}
                       <div className={styles.listContentBox}>
-                        <h3 className={styles.listTitle}>{post.title}</h3>
-                        <p className={styles.listNickname}>{post.nickname}</p>
+                        <h3 className={styles.listTitle}>{board.title}</h3>
+                        <p className={styles.listNickname}>{board.nickname}</p>
                         <p className={styles.listContent}>
-                          {Moment(post.createdDate).format("YYYY.MM.DD")}
+                          {Moment(board.createdDate).format("YYYY.MM.DD")}
                         </p>
                         <p className={styles.listContent}>
-                          좋아요 {post.likedCount} 댓글 {post.commentCount}
+                          좋아요 {board.likedCount} 댓글 {board.commentCount}
                         </p>
                       </div>
 
@@ -184,51 +184,51 @@ function BoardList() {
             )}
             {activeButton === "follow" && (
               <>
-                {boardsList.map((post, index) => (
+                {boardsList.map((board, index) => (
                   <div
                     key={index}
                     className={styles.boardItem}
-                    onClick={() => onClickBoard(post.boardId)}
+                    onClick={() => onClickBoard(board.boardId)}
                   >
-                    {post.boardType === "text_board" ? (
-                      <div className={styles.listNoImageBox}>
+                    {board.boardType === "text_board" ? (
+                      <div className={styles.listNoImgBox}>
                         <img
-                          className={styles.listNoImage}
+                          className={styles.listNoImg}
                           src={no_image}
                           alt='no Image'
                         ></img>
                       </div>
                     ) : (
                       <img
-                        className={styles.listImage}
-                        src={post.storedImageUrl}
+                        className={styles.listImg}
+                        src={board.storedImgUrl}
                         alt='Image'
                       />
                     )}
                     <div className={styles.listBox}>
-                      {!post.storedImageUrl ? (
+                      {!board.storedImgUrl ? (
                         <img
-                          className={styles.listUserImage}
+                          className={styles.listUserImg}
                           src={user_image}
                           alt='user_image'
                           onClick={onClickUserProfile}
                         />
                       ) : (
                         <img
-                          className={styles.listUserImage}
-                          src={post.storedImageUrl}
+                          className={styles.listUserImg}
+                          src={board.storedImgUrl}
                           alt='Image'
                           onClick={onClickUserProfile}
                         />
                       )}
                       <div className={styles.listContentBox}>
-                        <h3 className={styles.listTitle}>{post.title}</h3>
-                        <p className={styles.listNickname}>{post.nickname}</p>
+                        <h3 className={styles.listTitle}>{board.title}</h3>
+                        <p className={styles.listNickname}>{board.nickname}</p>
                         <p className={styles.listContent}>
-                          {Moment(post.createdDate).format("YYYY.MM.DD")}
+                          {Moment(board.createdDate).format("YYYY.MM.DD")}
                         </p>
                         <p className={styles.listContent}>
-                          좋아요 {post.likedCount} 댓글 {post.commentCount}
+                          좋아요 {board.likedCount} 댓글 {board.commentCount}
                         </p>
                       </div>
 
