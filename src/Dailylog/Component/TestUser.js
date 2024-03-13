@@ -1,4 +1,4 @@
-const dummyUser = {
+const TestUser = {
   userId: 1,
   email: "example@example.com",
   name: "김정우",
@@ -8,4 +8,4 @@ const dummyUser = {
   nickname: "슈가링캔디",
 };
 
-export default dummyUser;
+export default TestUser;

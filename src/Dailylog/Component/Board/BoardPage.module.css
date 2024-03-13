@@ -1,0 +1,117 @@
+.boardCreateBtn {
+  position: fixed;
+  bottom: 40px; /* 원하는 거리로 조정 */
+  right: 295px; /* 원하는 거리로 조정 */
+  z-index: 999; /* 다른 요소 위에 표시 */
+
+  width: 40px;
+  height: 40px;
+  background-color: #000000;
+  color: white;
+
+  padding: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+.pcBoardList {
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  height: 738px;
+  background-color: #fcfcfc;
+  overflow-y: auto;
+}
+.boardOptionBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 170px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.boardOption {
+  font-size: 18px;
+  font-weight: bold;
+  background-color: white;
+  padding: 10px 20px;
+  margin: 0;
+  border: none;
+  border-bottom: 5px solid transparent;
+  cursor: pointer;
+}
+.boardOptionActive {
+  border-color: #000000;
+}
+.boardList {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  gap: 20px;
+}
+.boardItem {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.listNoImageBox {
+  display: flex;
+  max-width: 100%;
+  height: 280px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+.listNoImage {
+  width: 40px;
+  height: 40px;
+  margin: auto;
+}
+.listImage {
+  max-width: 100%;
+  max-height: 280px; /* 원하는 높이로 설정 */
+  object-fit: cover;
+  object-position: center;
+  margin: 0 auto;
+}
+.listBox {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+.listUserImage {
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+}
+.listContentBox {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+  gap: 5px;
+}
+.listTitle {
+  width: 488px;
+  font-size: 20px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.listNickname {
+  font-size: 18px;
+  color: #6b6b6b;
+  margin: 0;
+}
+.listContent {
+  font-size: 14px;
+  color: #6b6b6b;
+  margin: 0;
+}
+.listOptionIcon {
+  width: 20px;
+  height: 20px;
+  color: #6b6b6b;
+  margin-left: auto;
+}

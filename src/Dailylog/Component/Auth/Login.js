@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import {
   ACCESS_TOKEN,
+  EMAIL,
   KAKAO_AUTH_URL,
   NAVER_AUTH_URL,
   GOOGLE_AUTH_URL,
@@ -51,6 +52,10 @@ function Login() {
 
   const setJwtToken = (response) => {
     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
+  };
+
+  const setEmail = (response) => {
+    localStorage.setItem(EMAIL, response.email);
   };
 
   const onClickPasswordReset = (e) => {

@@ -1,33 +1,9 @@
-body {
-  margin: 0 8px;
-} /*페이지 Body 여백 없애기*/
-.page {
-  padding: 0 80px;
-}
-.pcMainPage {
-  display: grid;
-  grid-template-columns: 20% 55% 25%; /* 3개의 열을 가진 그리드를 생성 */
-  gap: 0;
-}
-.leftSidePage {
-  text-align: center;
-  margin-top: 20px;
-}
-.mainPage {
-  text-align: center;
-  border-left: 1px solid #d9d9d9;
-  border-right: 1px solid #d9d9d9;
-}
-.rightSidePage {
-  text-align: center;
-}
-
-/*LeftSide*/
-.pcLeftPage {
+/*Navbar*/
+.pcNavbar {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-left: 100px;
+  margin: 20px 10px 0;
 }
 .logoImage {
   width: 120px;
@@ -75,33 +51,12 @@ body {
 .optActive {
   font-weight: bold;
 }
-/*Main*/
-.mainOptBox {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0 170px;
-  border-bottom: 1px solid #d9d9d9;
-}
-.mainOptNotice {
-  font-size: 18px;
-  font-weight: bold;
-  background-color: white;
-  padding: 10px 20px;
-  margin: 0;
-  border: none;
-  border-bottom: 5px solid transparent;
-  cursor: pointer;
-}
-.mainOptActive {
-  border-color: #000000;
-}
-/*RightSide*/
-.pcRightPage {
+/*Friend*/
+.pcFriend {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: 15px 10px 100px 20px;
+  margin: 15px 20px 100px;
   gap: 15px;
 }
 .searchBox {

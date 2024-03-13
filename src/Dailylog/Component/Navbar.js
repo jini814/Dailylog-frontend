@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import { getUserProfile } from "../Service/UserPageService";
 
 import styles from "./Page.module.css";
 import logo_image from "../Image/logo.png";
@@ -8,7 +9,9 @@ import user_image from "../Image/user.png";
 import { AiOutlineHome } from "react-icons/ai";
 import { FiUser } from "react-icons/fi";
 
-function LeftSide({ profile }) {
+import TestUser from "./TestUser";
+
+function Navbar() {
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
@@ -16,9 +19,22 @@ function LeftSide({ profile }) {
   const [activeButton, setActiveButton] = useState("home");
 
   useEffect(() => {
-    setMyProfile(profile);
-    console.log(profile);
-  }, [profile]);
+    setMyProfile(TestUser);
+    console.log(myProfile);
+  }, [myProfile]);
+
+  /* 
+  useEffect(() => {
+    getUserProfile(id)
+      .then((response) => {
+        setProfile(response);
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("오류 발생");
+      });
+  }, []); */
 
   const onClickHome = (e) => {
     setActiveButton("home");
@@ -34,9 +50,9 @@ function LeftSide({ profile }) {
   return (
     <>
       {isMobile ? (
-        <div className={styles.mobilePage}>dd</div>
+        <div className={styles.mobilePage}>모바일 왼쪽</div>
       ) : (
-        <div className={styles.pcLeftPage}>
+        <div className={styles.pcNavbar}>
           <img className={styles.logoImage} src={logo_image} alt='Logo'></img>
           <div className={styles.imageBox}>
             <img className={styles.userImage} src={user_image} alt='User'></img>
@@ -74,4 +90,4 @@ function LeftSide({ profile }) {
   );
 }
 
-export default LeftSide;
+export default Navbar;

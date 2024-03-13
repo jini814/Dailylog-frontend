@@ -6,7 +6,7 @@ import styles from "./Page.module.css";
 import { IoMdSearch } from "react-icons/io";
 import user_image from "../Image/user.png";
 
-function RightSide() {
+function Friend() {
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
@@ -15,7 +15,7 @@ function RightSide() {
       {isMobile ? (
         <div className={styles.mobilePage}></div>
       ) : (
-        <div className={styles.pcRightPage}>
+        <div className={styles.pcFriend}>
           <div className={styles.searchBox}>
             <IoMdSearch className={styles.searchIcon} />
             <input
@@ -55,4 +55,4 @@ function RightSide() {
   );
 }
 
-export default RightSide;
+export default Friend;

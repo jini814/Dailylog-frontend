@@ -1,7 +1,7 @@
 import { API_URL } from "../Constant/backendAPI";
 import { request } from "./APIService";
 
-export function listArticle(pageForm) {
+export function boardList(pageForm) {
   return request({
     url:
       API_URL +
@@ -9,9 +9,9 @@ export function listArticle(pageForm) {
       `?page=${pageForm.page}&size=${pageForm.size}&sort=${pageForm.sort}`,
     method: "GET",
   });
-} //게시글 목록 불러오기 요청
+} //게시글 목록 불러오기 요청 -> 전체조회
 
-export function showArticle(boardId) {
+export function boardShow(boardId) {
   return request({
     url: API_URL + "/boards/check/" + boardId,
     method: "GET",
@@ -20,15 +20,15 @@ export function showArticle(boardId) {
 
 export function boardWrite(boardForm) {
   return request({
-    url: API_URL + "/boards/write",
+    url: API_URL + "/boards/post",
     method: "POST",
     body: JSON.stringify(boardForm),
   });
 } //게시글 작성 요청
 
-export function boardEdit(boardForm) {
+export function boardEdit(boardForm, boardId) {
   return request({
-    url: API_URL + "/boards/edit",
+    url: API_URL + "/boards/edit" + boardId,
     method: "PUT",
     body: JSON.stringify(boardForm),
   });
