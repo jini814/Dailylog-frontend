@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 //AuthService
 import Login from "./Dailylog/Component/Auth/Login";
@@ -34,20 +35,44 @@ function App() {
   );
 }
 function BoardListLayout() {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   return (
-    <div className={styles.boardListPage}>
-      <Navbar />
-      <BoardList />
-      <Friend />
-    </div>
+    <>
+      {isMobile ? (
+        <div className={styles.mobileBoardList}>
+          <BoardList />
+          <div className={styles.mobileBoardMenu}>
+            <Friend />
+            <Navbar />
+          </div>
+        </div>
+      ) : (
+        <div className={styles.pcBoardList}>
+          <Navbar />
+          <BoardList />
+          <Friend />
+        </div>
+      )}
+    </>
   );
 }
+
 function BoardPageLayout() {
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   return (
-    <div className={styles.boardPage}>
-      <Navbar />
-      <BoardPage />
-    </div>
+    <>
+      {isMobile ? (
+        <div className={styles.mobileBoardPage}>
+          <Navbar />
+          <BoardList />
+        </div>
+      ) : (
+        <div className={styles.pcBoardPage}>
+          <Navbar />
+          <BoardPage />
+        </div>
+      )}
+    </>
   );
 }
 

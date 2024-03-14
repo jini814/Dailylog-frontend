@@ -52,6 +52,10 @@ function BoardPage() {
       });
   };
 
+  const onClickBack = (e) => {
+    navigate(-1);
+  };
+
   const onClickUserProfile = (e) => {
     e.stopPropagation();
     navigate("/userProfile"); //상대방 페이지로 이동, 주소 수정 해야함
@@ -86,7 +90,10 @@ function BoardPage() {
         <div className={styles.mobilePage}>dd</div>
       ) : (
         <div className={styles.pcBoardPage} key={board.id}>
-          <MdOutlineArrowBack className={styles.boardBackIcon} />
+          <MdOutlineArrowBack
+            className={styles.boardBackIcon}
+            onClick={onClickBack}
+          />
           <h2>{board.title} </h2>
           <div className={styles.boardViews}>
             {!board.storedImageUrl ? (

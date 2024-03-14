@@ -1,50 +1,22 @@
-.page {
-  padding: 20px;
-}
 /* Login */
-.mobilePage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 60px 0px;
-  margin: auto;
-}
-.mobileLogoImg {
-  width: 40%;
-  padding: 20px;
-  margin: 0 0 60px;
-}
-.mobileForm {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  gap: 10px;
-}
-.mobileFormContent {
-  font-size: 18px;
-  padding: 10px;
-  margin: 4px 0 0;
-  border: 1px solid #6d6d6d;
-  border-radius: 4px;
-}
 .pcPage {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  width: 800px;
   padding: 60px 0px;
-  margin: auto;
+  margin: 20px auto;
   border: 1px solid #ccc;
   border-radius: 10px;
 }
-.logoImg {
-  width: 20%;
-  padding: 20px;
+.pcLogoImg {
+  width: 200px;
+  margin: 30px 0 40px;
 }
-.logInForm {
+.pcLoginForm {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 400px;
   gap: 10px;
 }
 .formContent {
@@ -57,7 +29,7 @@
 .formContent::placeholder {
   color: #bcbcbc;
 }
-.longBtn {
+.blackBtn {
   font-size: 20px;
   color: white;
   background-color: black;
@@ -67,17 +39,17 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.longBtn:hover {
+.blackBtn:hover {
   background-color: #3f4d61;
 }
-.forgetAuth {
+.passwordMenu {
   font-size: 16px;
   color: #6b6b6b;
   margin: 0;
   cursor: pointer;
 }
 .hr {
-  width: 50%;
+  width: 400px;
   border-top: 1px solid #ccc;
   margin: 30px;
 }
@@ -101,21 +73,51 @@
   border-radius: 7px;
   cursor: pointer;
 }
-.createNotice {
+.menuNoticew {
   display: flex;
   flex-direction: row;
   gap: 12px;
 }
-.createAuth {
+.signUpMenu {
   font-weight: bold;
   text-decoration: underline;
   cursor: pointer;
 }
+/* mobile */
+.mobilePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 380px;
+  padding: 60px 0px;
+  margin: auto;
+}
+.mobileLogoImg {
+  width: 140px;
+  padding: 20px;
+  margin: 0 0 60px;
+}
+.mobileLoginForm {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  gap: 10px;
+}
+.mobileHr {
+  width: 320px;
+  border-top: 1px solid #ccc;
+  margin: 30px;
+}
 /* SignUp */
-.signUp {
+.signUpNotice {
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 50px;
+}
+.pcSignUpForm {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
 }
 .formHeader {
   font-size: 18px;
@@ -172,13 +174,9 @@ input[type="radio"] {
   margin: 0 5px 2px 35px;
   accent-color: black;
 }
-.signUpForm {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-}
+/* mobile */
 .mobileSignUpForm {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 320px;
 }

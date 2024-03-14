@@ -195,107 +195,11 @@ function PasswordReset() {
   };
 
   return (
-    <div className={styles.page}>
+    <>
       {isMobile ? (
         <div className={styles.mobilePage}>
-          <p className={styles.signUp}>비밀번호 찾기</p>
+          <p className={styles.signUpNotice}>비밀번호 찾기</p>
           <form className={styles.mobileSignUpForm} onSubmit={handleFormSubmit}>
-            <p className={styles.formHeader}>사용자 이름</p>
-            <input
-              className={styles.mobileFormContent}
-              type='text'
-              id='name'
-              name='name'
-              placeholder='홍길동'
-              required
-              value={isSignedForm.name}
-              onChange={handleFormChange}
-            />
-            <p className={styles.formHeader}>이메일</p>
-            <input
-              className={styles.mobileFormContent}
-              type='email'
-              id='email'
-              name='email'
-              placeholder='아이디 입력'
-              required
-              value={email}
-              onChange={handleEmailChange}
-              disabled={isCodeSent}
-            />
-            {!isEmailVerified && (
-              <>
-                {isCodeSent && (
-                  <>
-                    <input
-                      className={styles.mobileFormContent}
-                      type='text'
-                      id='verificationCode'
-                      name='verificationCode'
-                      placeholder='인증번호 입력'
-                      required
-                      value={emailCode}
-                      onChange={handleEmailCodeChange}
-                    />
-                    <p className={styles.formEmailContent}>
-                      <p className={styles.formNotice}>
-                        남은 시간: {remainingTime}초
-                      </p>
-                      <p className={styles.formNoticeClick}> 재전송</p>
-                    </p>
-                  </>
-                )}
-                <button
-                  className={styles.longBtn}
-                  type='button'
-                  onClick={
-                    isCodeSent ? onEmailCodeVerifyClick : onEmailCodeClick
-                  }
-                >
-                  {isCodeSent ? "인증번호 확인" : "인증번호 전송"}
-                </button>
-              </>
-            )}
-            {isEmailVerified && (
-              <>
-                <p className={styles.formHeader}>비밀번호</p>
-                <input
-                  className={styles.mobileFormContent}
-                  type='password'
-                  id='password'
-                  name='password'
-                  placeholder='비밀번호 입력'
-                  required
-                  value={password}
-                  onChange={handlePasswordChange}
-                />
-                <input
-                  className={styles.mobileFormContent}
-                  type='password'
-                  id='password'
-                  name='password'
-                  placeholder='비밀번호 확인'
-                  required
-                  value={passwordConfirm}
-                  onChange={handlePasswordConfirmChange}
-                />
-                {passwordMessage && (
-                  <p className={styles.formNotice}>{passwordMessage}</p>
-                )}
-                {passwordConfirmMessage && (
-                  <p className={styles.formNotice}>{passwordConfirmMessage}</p>
-                )}
-                <button className={styles.longBtn} type='submit'>
-                  비밀번호 재설정하기
-                </button>
-              </>
-            )}
-          </form>
-        </div>
-      ) : (
-        <div className={styles.pcPage}>
-          <p className={styles.signUp}>비밀번호 찾기</p>
-          <form className={styles.signUpForm} onSubmit={handleFormSubmit}>
             <p className={styles.formHeader}>사용자 이름</p>
             <input
               className={styles.formContent}
@@ -342,7 +246,7 @@ function PasswordReset() {
                   </>
                 )}
                 <button
-                  className={styles.longBtn}
+                  className={styles.blackBtn}
                   type='button'
                   onClick={
                     isCodeSent ? onEmailCodeVerifyClick : onEmailCodeClick
@@ -381,7 +285,103 @@ function PasswordReset() {
                 {passwordConfirmMessage && (
                   <p className={styles.formNotice}>{passwordConfirmMessage}</p>
                 )}
-                <button className={styles.longBtn} type='submit'>
+                <button className={styles.blackBtn} type='submit'>
+                  비밀번호 재설정하기
+                </button>
+              </>
+            )}
+          </form>
+        </div>
+      ) : (
+        <div className={styles.pcPage}>
+          <p className={styles.signUpNotice}>비밀번호 찾기</p>
+          <form className={styles.pcSignUpForm} onSubmit={handleFormSubmit}>
+            <p className={styles.formHeader}>사용자 이름</p>
+            <input
+              className={styles.formContent}
+              type='text'
+              id='name'
+              name='name'
+              placeholder='홍길동'
+              required
+              value={isSignedForm.name}
+              onChange={handleFormChange}
+            />
+            <p className={styles.formHeader}>이메일</p>
+            <input
+              className={styles.formContent}
+              type='email'
+              id='email'
+              name='email'
+              placeholder='아이디 입력'
+              required
+              value={email}
+              onChange={handleEmailChange}
+              disabled={isCodeSent}
+            />
+            {!isEmailVerified && (
+              <>
+                {isCodeSent && (
+                  <>
+                    <input
+                      className={styles.formContent}
+                      type='text'
+                      id='verificationCode'
+                      name='verificationCode'
+                      placeholder='인증번호 입력'
+                      required
+                      value={emailCode}
+                      onChange={handleEmailCodeChange}
+                    />
+                    <p className={styles.formEmailContent}>
+                      <p className={styles.formNotice}>
+                        남은 시간: {remainingTime}초
+                      </p>
+                      <p className={styles.formNoticeClick}> 재전송</p>
+                    </p>
+                  </>
+                )}
+                <button
+                  className={styles.blackBtn}
+                  type='button'
+                  onClick={
+                    isCodeSent ? onEmailCodeVerifyClick : onEmailCodeClick
+                  }
+                >
+                  {isCodeSent ? "인증번호 확인" : "인증번호 전송"}
+                </button>
+              </>
+            )}
+            {isEmailVerified && (
+              <>
+                <p className={styles.formHeader}>비밀번호</p>
+                <input
+                  className={styles.formContent}
+                  type='password'
+                  id='password'
+                  name='password'
+                  placeholder='비밀번호 입력'
+                  required
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <input
+                  className={styles.formContent}
+                  type='password'
+                  id='password'
+                  name='password'
+                  placeholder='비밀번호 확인'
+                  required
+                  value={passwordConfirm}
+                  onChange={handlePasswordConfirmChange}
+                />
+                {passwordMessage && (
+                  <p className={styles.formNotice}>{passwordMessage}</p>
+                )}
+                {passwordConfirmMessage && (
+                  <p className={styles.formNotice}>{passwordConfirmMessage}</p>
+                )}
+                <button className={styles.blackBtn} type='submit'>
                   비밀번호 재설정하기
                 </button>
               </>
@@ -389,7 +389,7 @@ function PasswordReset() {
           </form>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

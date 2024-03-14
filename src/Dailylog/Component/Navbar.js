@@ -50,7 +50,10 @@ function Navbar() {
   return (
     <>
       {isMobile ? (
-        <div className={styles.mobilePage}>모바일 왼쪽</div>
+        <div className={styles.mobileNavbar}>
+          <AiOutlineHome className={styles.homeIcon} />
+          <FiUser className={styles.userIcon} />
+        </div>
       ) : (
         <div className={styles.pcNavbar}>
           <img className={styles.logoImage} src={logo_image} alt='Logo'></img>

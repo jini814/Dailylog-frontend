@@ -60,7 +60,7 @@ function BoardList() {
 
   const onClickFollow = () => {
     setActiveButton("follow");
-    setBoardsList(TestBoard2);
+    setBoardsList(TestBoard);
     // fetchBoardList();
   };
 
@@ -68,7 +68,7 @@ function BoardList() {
     /*   if (!checkIfLoggedIn()) {
       navigate("/login");
     } else { */
-    navigate("/boardcreate");
+    navigate("/board/create");
     //}
   };
 
@@ -93,7 +93,7 @@ function BoardList() {
   return (
     <>
       {isMobile ? (
-        <div className={styles.mobileMainPage}>이거 모바일임</div>
+        <div className={styles.mobileMainPage}>모바일 BoardList</div>
       ) : (
         <div className={styles.pcBoardList}>
           <RxPencil1

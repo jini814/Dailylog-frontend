@@ -211,163 +211,14 @@ function SignUp() {
   };
 
   return (
-    <div className={styles.page}>
+    <>
       {isMobile ? (
         <div className={styles.mobilePage}>
-          <p className={styles.signUp}>회원가입</p>
+          <p className={styles.signUpNotice}>회원가입</p>
           <form
             className={styles.mobileSignUpForm}
             onSubmit={onClickFormSubmit}
           >
-            <p className={styles.formHeader}>이메일</p>
-            <input
-              className={styles.mobileFormContent}
-              type='email'
-              id='email'
-              name='email'
-              placeholder='아이디 입력'
-              required
-              value={email}
-              onChange={handleEmailChange}
-              disabled={isCodeSent}
-            />
-            {!isEmailVerified && (
-              <>
-                {isCodeSent && (
-                  <>
-                    <input
-                      className={styles.mobileFormContent}
-                      type='text'
-                      id='verificationCode'
-                      name='verificationCode'
-                      placeholder='인증번호 입력'
-                      required
-                      value={emailCode}
-                      onChange={handleEmailCodeChange}
-                    />
-                    <div className={styles.formEmailContent}>
-                      <p className={styles.formNotice}>
-                        남은 시간: {remainingTime}초
-                      </p>
-                      <p
-                        className={styles.formNoticeClick}
-                        onClick={onClickEmailCode}
-                      >
-                        재전송
-                      </p>
-                    </div>
-                  </>
-                )}
-                <button
-                  className={styles.longBtn}
-                  type='button'
-                  onClick={
-                    isCodeSent ? onClickEmailCodeVerify : onClickEmailCode
-                  }
-                >
-                  {isCodeSent ? "인증번호 확인" : "인증번호 전송"}
-                </button>
-              </>
-            )}
-            <p className={styles.formHeader}>비밀번호</p>
-            <input
-              className={styles.mobileFormContent}
-              type='password'
-              id='password'
-              name='password'
-              placeholder='비밀번호 입력'
-              required
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <input
-              className={styles.mobileFormContent}
-              type='password'
-              id='password'
-              name='password'
-              placeholder='비밀번호 확인'
-              required
-              value={passwordConfirm}
-              onChange={handlePasswordConfirmChange}
-            />
-            {passwordMessage && (
-              <p className={styles.formNotice}>{passwordMessage}</p>
-            )}
-            {passwordConfirmMessage && (
-              <p className={styles.formNotice}>{passwordConfirmMessage}</p>
-            )}
-            <p className={styles.formHeader}>사용자 이름</p>
-            <input
-              className={styles.mobileFormContent}
-              type='text'
-              id='name'
-              name='name'
-              placeholder='홍길동'
-              required
-              value={signUpForm.name}
-              onChange={handleFormChange}
-            />
-            <p className={styles.formHeader}>생년월일</p>
-            <input
-              className={styles.mobileFormContent}
-              type='text'
-              id='birth'
-              name='birth'
-              placeholder='20010101'
-              required
-              value={birth}
-              onChange={handleBirthChange}
-              inputMode='numeric'
-            />
-            <p className={styles.formSexContent}>
-              <p className={styles.formSexHeader}>성별</p>
-              <input
-                className={styles.mobileFormContent}
-                type='radio'
-                id='male'
-                name='sex'
-                value='male'
-                checked={signUpForm.sex === "male"}
-                onChange={handleFormChange}
-                required
-              />
-              <label htmlFor='male' className={styles.radioLabel}>
-                남성 <IoMdMale className={styles.maleIcon} />
-              </label>
-              <input
-                className={styles.mobileFormContent}
-                type='radio'
-                id='female'
-                name='sex'
-                value='female'
-                checked={signUpForm.sex === "female"}
-                onChange={handleFormChange}
-                required
-              />
-              <label htmlFor='female' className={styles.radioLabel}>
-                여성 <IoMdFemale className={styles.femaleIcon} />
-              </label>
-            </p>
-            <p className={styles.formHeader}>닉네임</p>
-            <input
-              className={styles.mobileFormContent}
-              type='text'
-              id='nickname'
-              name='nickname'
-              placeholder='닉네임 입력'
-              required
-              value={signUpForm.nickname}
-              onChange={handleFormChange}
-            />
-            <button className={styles.longBtn} type='submit'>
-              가입하기
-            </button>
-          </form>
-        </div>
-      ) : (
-        <div className={styles.pcPage}>
-          <p className={styles.signUp}>회원가입</p>
-          <form className={styles.signUpForm} onSubmit={onClickFormSubmit}>
             <p className={styles.formHeader}>이메일</p>
             <input
               className={styles.formContent}
@@ -408,7 +259,7 @@ function SignUp() {
                   </>
                 )}
                 <button
-                  className={styles.longBtn}
+                  className={styles.blackBtn}
                   type='button'
                   onClick={
                     isCodeSent ? onClickEmailCodeVerify : onClickEmailCode
@@ -508,13 +359,162 @@ function SignUp() {
               value={signUpForm.nickname}
               onChange={handleFormChange}
             />
-            <button className={styles.longBtn} type='submit'>
+            <button className={styles.blackBtn} type='submit'>
+              가입하기
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div className={styles.pcPage}>
+          <p className={styles.signUpNotice}>회원가입</p>
+          <form className={styles.pcSignUpForm} onSubmit={onClickFormSubmit}>
+            <p className={styles.formHeader}>이메일</p>
+            <input
+              className={styles.formContent}
+              type='email'
+              id='email'
+              name='email'
+              placeholder='아이디 입력'
+              required
+              value={email}
+              onChange={handleEmailChange}
+              disabled={isCodeSent}
+            />
+            {!isEmailVerified && (
+              <>
+                {isCodeSent && (
+                  <>
+                    <input
+                      className={styles.formContent}
+                      type='text'
+                      id='verificationCode'
+                      name='verificationCode'
+                      placeholder='인증번호 입력'
+                      required
+                      value={emailCode}
+                      onChange={handleEmailCodeChange}
+                    />
+                    <div className={styles.formEmailContent}>
+                      <p className={styles.formNotice}>
+                        남은 시간: {remainingTime}초
+                      </p>
+                      <p
+                        className={styles.formNoticeClick}
+                        onClick={onClickEmailCode}
+                      >
+                        재전송
+                      </p>
+                    </div>
+                  </>
+                )}
+                <button
+                  className={styles.blackBtn}
+                  type='button'
+                  onClick={
+                    isCodeSent ? onClickEmailCodeVerify : onClickEmailCode
+                  }
+                >
+                  {isCodeSent ? "인증번호 확인" : "인증번호 전송"}
+                </button>
+              </>
+            )}
+            <p className={styles.formHeader}>비밀번호</p>
+            <input
+              className={styles.formContent}
+              type='password'
+              id='password'
+              name='password'
+              placeholder='비밀번호 입력'
+              required
+              value={password}
+              onChange={handlePasswordChange}
+            />
+            <input
+              className={styles.formContent}
+              type='password'
+              id='password'
+              name='password'
+              placeholder='비밀번호 확인'
+              required
+              value={passwordConfirm}
+              onChange={handlePasswordConfirmChange}
+            />
+            {passwordMessage && (
+              <p className={styles.formNotice}>{passwordMessage}</p>
+            )}
+            {passwordConfirmMessage && (
+              <p className={styles.formNotice}>{passwordConfirmMessage}</p>
+            )}
+            <p className={styles.formHeader}>사용자 이름</p>
+            <input
+              className={styles.formContent}
+              type='text'
+              id='name'
+              name='name'
+              placeholder='홍길동'
+              required
+              value={signUpForm.name}
+              onChange={handleFormChange}
+            />
+            <p className={styles.formHeader}>생년월일</p>
+            <input
+              className={styles.formContent}
+              type='text'
+              id='birth'
+              name='birth'
+              placeholder='20010101'
+              required
+              value={birth}
+              onChange={handleBirthChange}
+              inputMode='numeric'
+            />
+            <p className={styles.formSexContent}>
+              <p className={styles.formSexHeader}>성별</p>
+              <input
+                className={styles.formContent}
+                type='radio'
+                id='male'
+                name='sex'
+                value='male'
+                checked={signUpForm.sex === "male"}
+                onChange={handleFormChange}
+                required
+              />
+              <label htmlFor='male' className={styles.radioLabel}>
+                남성 <IoMdMale className={styles.maleIcon} />
+              </label>
+              <input
+                className={styles.formContent}
+                type='radio'
+                id='female'
+                name='sex'
+                value='female'
+                checked={signUpForm.sex === "female"}
+                onChange={handleFormChange}
+                required
+              />
+              <label htmlFor='female' className={styles.radioLabel}>
+                여성 <IoMdFemale className={styles.femaleIcon} />
+              </label>
+            </p>
+            <p className={styles.formHeader}>닉네임</p>
+            <input
+              className={styles.formContent}
+              type='text'
+              id='nickname'
+              name='nickname'
+              placeholder='닉네임 입력'
+              required
+              value={signUpForm.nickname}
+              onChange={handleFormChange}
+            />
+            <button className={styles.blackBtn} type='submit'>
               가입하기
             </button>
           </form>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
