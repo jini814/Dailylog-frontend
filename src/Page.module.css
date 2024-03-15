@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+  overflow-x: scroll;
+} /*페이지 Body 여백 없애기*/
 /*BoardListLayout*/
 .mobileBoardList {
   display: flex;
@@ -14,6 +18,7 @@
   display: grid;
   justify-content: center;
   grid-template-columns: 160px 650px 300px; /* 3개의 열을 가진 그리드를 생성 */
+  min-width: 1110px;
 }
 /*BoardPageLayout*/
 .pcBoardPage {

@@ -12,7 +12,6 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { RxPencil1 } from "react-icons/rx";
 
 import TestBoard from "../TestBoard";
-import TestBoard2 from "../TestBoard2";
 
 function BoardList() {
   const navigate = useNavigate();
@@ -100,12 +99,12 @@ function BoardList() {
             className={styles.boardCreateBtn}
             onClick={onClickCreate}
           />
-          <div className={styles.boardOptionBox}>
+          <div className={styles.boardOptBox}>
             <button
               className={
                 activeButton === "recommend"
-                  ? `${styles.boardOption} ${styles.boardOptionActive}`
-                  : styles.boardOption
+                  ? `${styles.boardOpt} ${styles.boardOptActive}`
+                  : styles.boardOpt
               }
               onClick={onClickRecommend}
             >
@@ -114,8 +113,8 @@ function BoardList() {
             <button
               className={
                 activeButton === "follow"
-                  ? `${styles.boardOption} ${styles.boardOptionActive}`
-                  : styles.boardOption
+                  ? `${styles.boardOpt} ${styles.boardOptActive}`
+                  : styles.boardOpt
               }
               onClick={onClickFollow}
             >
@@ -174,7 +173,7 @@ function BoardList() {
                       </div>
 
                       <SlOptionsVertical
-                        className={styles.listOptionIcon}
+                        className={styles.listOptIcon}
                         onClick={onClickOption}
                       />
                     </div>
@@ -233,7 +232,7 @@ function BoardList() {
                       </div>
 
                       <SlOptionsVertical
-                        className={styles.listOptionIcon}
+                        className={styles.listOptIcon}
                         onClick={onClickOption}
                       />
                     </div>

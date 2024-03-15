@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { getUserProfile } from "../Service/UserPageService";
 
-import styles from "./Page.module.css";
+import styles from "./Menu.module.css";
 import logo_image from "../Image/logo.png";
 import user_image from "../Image/user.png";
 import { AiOutlineHome } from "react-icons/ai";
@@ -56,9 +56,9 @@ function Navbar() {
         </div>
       ) : (
         <div className={styles.pcNavbar}>
-          <img className={styles.logoImage} src={logo_image} alt='Logo'></img>
-          <div className={styles.imageBox}>
-            <img className={styles.userImage} src={user_image} alt='User'></img>
+          <img className={styles.logoImg} src={logo_image} alt='Logo'></img>
+          <div className={styles.imgBox}>
+            <img className={styles.userImg} src={user_image} alt='User'></img>
             <p className={styles.userName}>{myProfile.nickname}</p>
           </div>
           <div className={styles.iconBox} onClick={onClickHome}>

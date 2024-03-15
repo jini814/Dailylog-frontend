@@ -1,22 +1,24 @@
 /*Navbar*/
+
 .pcNavbar {
   display: flex;
   flex-direction: column;
   text-align: center;
+  width: 160px;
   margin: 20px 10px 0;
 }
-.logoImage {
+.logoImg {
   width: 120px;
   margin-bottom: 10px;
 }
-.imageBox {
+.imgBox {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 8px;
   margin: 0 0 10px;
 }
-.userImage {
+.userImg {
   width: 40px;
   height: 40px;
   cursor: pointer;
@@ -58,6 +60,10 @@
   gap: 20px;
 }
 /*Friend*/
+.mobileSearchIcon {
+  width: 30px;
+  height: 30px;
+}
 .pcFriend {
   display: flex;
   flex-direction: column;
@@ -105,7 +111,7 @@
   align-items: center;
   margin: 10px 0;
 }
-.friendImage {
+.friendImg {
   width: 50px;
   height: 50px;
   margin-right: 15px;

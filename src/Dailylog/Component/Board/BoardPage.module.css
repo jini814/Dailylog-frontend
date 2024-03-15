@@ -1,3 +1,11 @@
+/*BoardList.js*/
+.pcBoardList {
+  height: 738px;
+  background-color: #fcfcfc;
+  border-left: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  overflow-y: auto;
+}
 .boardCreateBtn {
   position: fixed;
   bottom: 40px; /* 원하는 거리로 조정 */
@@ -11,21 +19,14 @@
   border-radius: 50px;
   cursor: pointer;
 }
-.pcBoardList {
-  border-left: 1px solid #d9d9d9;
-  border-right: 1px solid #d9d9d9;
-  height: 738px;
-  background-color: #fcfcfc;
-  overflow-y: auto;
-}
-.boardOptionBox {
+.boardOptBox {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 0 170px;
   border-bottom: 1px solid #d9d9d9;
 }
-.boardOption {
+.boardOpt {
   font-size: 18px;
   font-weight: bold;
   background-color: white;
@@ -35,7 +36,7 @@
   border-bottom: 5px solid transparent;
   cursor: pointer;
 }
-.boardOptionActive {
+.boardOptActive {
   border-color: #000000;
 }
 .boardList {
@@ -107,7 +108,7 @@
   color: #6b6b6b;
   margin: 0;
 }
-.listOptionIcon {
+.listOptIcon {
   width: 20px;
   height: 20px;
   color: #6b6b6b;
@@ -156,7 +157,6 @@
   padding: 10px 5px;
 }
 .boardContent {
-  min-height: 200px;
   margin: 0;
   line-height: 1.8;
 }

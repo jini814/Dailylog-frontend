@@ -15,6 +15,7 @@ import Friend from "./Dailylog/Component/Friend";
 import BoardList from "./Dailylog/Component/Board/BoardList";
 import BoardPage from "./Dailylog/Component/Board/BoardPage";
 import BoardCreate from "./Dailylog/Component/Board/BoardCreate";
+import BoardModify from "./Dailylog/Component/Board/BoardModify";
 
 import styles from "./Page.module.css";
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/board/:id' element={<BoardPageLayout />} />
 
         <Route path='/board/create' element={<BoardCreate />} />
+        <Route path='/board/modify' element={<BoardModify />} />
       </Routes>
     </Router>
   );

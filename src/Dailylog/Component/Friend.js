@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
-import styles from "./Page.module.css";
+import styles from "./Menu.module.css";
 import { IoMdSearch } from "react-icons/io";
 import user_image from "../Image/user.png";
 
@@ -14,8 +14,7 @@ function Friend() {
     <>
       {isMobile ? (
         <div className={styles.mobilePage}>
-          {" "}
-          <IoMdSearch className={styles.searchIcon} />
+          <IoMdSearch className={styles.mobileSearchIcon} />
         </div>
       ) : (
         <div className={styles.pcFriend}>
@@ -34,7 +33,7 @@ function Friend() {
             <p className={styles.friendBoxNotice}>친구추천</p>
             <div className={styles.friendBox}>
               <img
-                className={styles.friendImage}
+                className={styles.friendImg}
                 src={user_image}
                 alt='User'
               ></img>
@@ -43,7 +42,7 @@ function Friend() {
             </div>
             <div className={styles.friendBox}>
               <img
-                className={styles.friendImage}
+                className={styles.friendImg}
                 src={user_image}
                 alt='User'
               ></img>
