@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import {
   ACCESS_TOKEN,
+  EMAIL,
   KAKAO_AUTH_URL,
   NAVER_AUTH_URL,
   GOOGLE_AUTH_URL,
@@ -32,7 +33,8 @@ function Login() {
     });
   };
 
-  const handleFormSubmit = (e) => {
+  const onClickFormSubmit = (e) => {
+    console.log(loginForm);
     e.preventDefault();
     logIn(loginForm)
       .then((response) => {
@@ -52,6 +54,10 @@ function Login() {
     localStorage.setItem(ACCESS_TOKEN, response.accessToken);
   };
 
+  const setEmail = (response) => {
+    localStorage.setItem(EMAIL, response.email);
+  };
+
   const onClickPasswordReset = (e) => {
     navigate("/password-reset");
   };
@@ -61,17 +67,17 @@ function Login() {
   };
 
   return (
-    <div className={styles.page}>
+    <>
       {isMobile ? (
-        <div className={styles.mobilePage}>
+        <div className={styles.mobileLoginPage}>
           <img
-            className={styles.mobileLogoImage}
+            className={styles.mobileLogoImg}
             src={logo_image}
             alt='Logo'
           ></img>
-          <form className={styles.mobileForm} onSubmit={handleFormSubmit}>
+          <form className={styles.mobileLoginForm} onSubmit={onClickFormSubmit}>
             <input
-              className={styles.mobileFormContent}
+              className={styles.formContent}
               type='email'
               id='email'
               name='email'
@@ -81,7 +87,7 @@ function Login() {
               onChange={handleFormChange}
             />
             <input
-              className={styles.mobileFormContent}
+              className={styles.formContent}
               type='password'
               id='password'
               name='password'
@@ -90,28 +96,28 @@ function Login() {
               value={loginForm.password}
               onChange={handleFormChange}
             />
-            <button className={styles.longBtn} type='submit'>
+            <button className={styles.blackBtn} type='submit'>
               로그인
             </button>
           </form>
-          <p className={styles.forgetAuth} onClick={onClickPasswordReset}>
+          <p className={styles.passwordMenu} onClick={onClickPasswordReset}>
             비밀번호 찾기
           </p>
-          <hr className={styles.hr} />
+          <hr className={styles.mobileHr} />
           <img className={styles.socialKakao} src={kakao} alt='Kakao'></img>
           <img className={styles.socialNaver} src={naver} alt='Naver'></img>
           <img className={styles.socialGoogle} src={google} alt='Google'></img>
-          <p className={styles.createNotice}>
+          <p className={styles.menuNoticew}>
             <p>계정이 없으신가요?</p>
-            <p className={styles.createAuth} onClick={onClickCreateAuth}>
+            <p className={styles.signUpMenu} onClick={onClickCreateAuth}>
               회원가입
             </p>
           </p>
         </div>
       ) : (
         <div className={styles.pcPage}>
-          <img className={styles.logoImage} src={logo_image} alt='Logo'></img>
-          <form className={styles.logInForm} onSubmit={handleFormSubmit}>
+          <img className={styles.pcLogoImg} src={logo_image} alt='Logo'></img>
+          <form className={styles.pcLoginForm} onSubmit={onClickFormSubmit}>
             <input
               className={styles.formContent}
               type='email'
@@ -132,11 +138,11 @@ function Login() {
               value={loginForm.password}
               onChange={handleFormChange}
             />
-            <button className={styles.longBtn} type='submit'>
+            <button className={styles.blackBtn} type='submit'>
               로그인
             </button>
           </form>
-          <p className={styles.forgetAuth} onClick={onClickPasswordReset}>
+          <p className={styles.passwordMenu} onClick={onClickPasswordReset}>
             비밀번호 찾기
           </p>
           <hr className={styles.hr} />
@@ -149,15 +155,15 @@ function Login() {
           <a href={GOOGLE_AUTH_URL}>
             <img className={styles.socialGoogle} src={google} alt='Google' />
           </a>
-          <p className={styles.createNotice}>
+          <p className={styles.menuNoticew}>
             <p>계정이 없으신가요?</p>
-            <p className={styles.createAuth} onClick={onClickCreateAuth}>
+            <p className={styles.signUpMenu} onClick={onClickCreateAuth}>
               회원가입
             </p>
           </p>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

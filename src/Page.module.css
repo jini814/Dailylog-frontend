@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  overflow-x: scroll;
+} /*페이지 Body 여백 없애기*/
+/*BoardListLayout*/
+.mobileBoardList {
+  display: flex;
+  flex-direction: column;
+}
+.mobileBoardMenu {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  align-items: center;
+  margin-top: auto;
+}
+.pcBoardList {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 160px 650px 300px; /* 3개의 열을 가진 그리드를 생성 */
+  min-width: 1110px;
+}
+/*BoardPageLayout*/
+.pcBoardPage {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 160px 950px;
+}

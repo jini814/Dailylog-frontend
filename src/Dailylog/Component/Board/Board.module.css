@@ -1,0 +1,107 @@
+.page {
+  width: fit-content;
+  min-width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+/*BoardPage.js*/
+.pcBoardPage {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 150px 950px; /* 2개의 열을 가진 그리드를 생성 */
+  margin: 20px;
+}
+/*BoardCreate.js*/
+.pcPage {
+  width: 1024px;
+  margin: 50px auto;
+  border: 1px solid #bcbcbc;
+}
+.createForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 0;
+  gap: 10px;
+}
+.createFormContent {
+  width: 950px;
+  padding: 5px 30px;
+  margin: auto;
+}
+.formTitle {
+  width: 950px;
+  font-size: 22px;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #b7b7b7;
+}
+.formOption {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 38px;
+  border-top: 1px solid #bcbcbc;
+  border-bottom: 1px solid #bcbcbc;
+  gap: 10px;
+}
+.optionIcon {
+  width: 28px;
+  height: 28px;
+}
+.optionBtn {
+  font-size: 16px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: -8px;
+}
+.formContent {
+  width: 950px;
+  height: 400px;
+  font-size: 15px;
+  padding: 10px 0;
+  border: none;
+  resize: none;
+}
+.formTitle::placeholder,
+.formContent::placeholder {
+  color: #bcbcbc;
+}
+.formBtn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0 0;
+  border-top: 1px solid #bcbcbc;
+  margin: 0 16px;
+}
+.cancelBtn {
+  background-color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #bcbcbc;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.prevBtn {
+  background-color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #bcbcbc;
+  border-radius: 2px;
+  margin: 0 15px 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.submitBtn {
+  color: white;
+  background-color: #333333;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #333333;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}

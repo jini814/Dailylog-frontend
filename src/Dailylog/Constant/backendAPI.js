@@ -1,7 +1,9 @@
-export const API_URL = "http://43.201.9.110:8080";
+export const API_URL = "http://15.164.232.138:8080";
 
 export const ACCESS_TOKEN = "accessToken";
 export const ACCESS_TOKEN_EXPIRED_MESC = 86400;
+
+export const EMAIL = "email";
 
 export const OAUTH2_REDIRECT_URI = "http://localhost:3000/oauth2/redirect";
 export const GOOGLE_AUTH_URL =
