@@ -10,6 +10,7 @@ import styles from "./BoardPage.module.css";
 import user_image from "../../Image/user.png";
 import { MdOutlineArrowBack } from "react-icons/md";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { SlOptionsVertical } from "react-icons/sl";
 
 import TestBoard2 from "../TestBoard2";
 
@@ -25,7 +26,7 @@ function BoardPage() {
   useEffect(() => {
     setBoard(TestBoard2);
     console.log(board);
-    //fetchBoard();
+    fetchBoard();
   }, [board]);
 
   useEffect(() => {
@@ -70,6 +71,11 @@ function BoardPage() {
     navigate(`/board/modify/${id}`);
   };
 
+  const onClickOption = (e) => {
+    e.stopPropagation();
+    console.log("누름");
+  };
+
   const onClickDelete = () => {
     if (window.confirm("게시글을 삭제하시겠습니까?")) {
       boardDelete(id)
@@ -87,9 +93,61 @@ function BoardPage() {
   return (
     <>
       {isMobile ? (
-        <div className={styles.mobilePage}>dd</div>
+        <div className={styles.BoardPage} key={board.id}>
+          <MdOutlineArrowBack
+            className={styles.mobileBoardBackIcon}
+            onClick={onClickBack}
+          />
+          <h2>{board.title} </h2>
+          <div className={styles.mobileBoardViews}>
+            {!board.storedImageUrl ? (
+              <img
+                className={styles.boardUserImg}
+                src={user_image}
+                alt='user_image'
+                onClick={onClickUserProfile}
+              />
+            ) : (
+              <img
+                className={styles.boardUserImg}
+                src={board.storedImageUrl}
+                alt='Image'
+                onClick={onClickUserProfile}
+              />
+            )}
+            <p className={styles.boardNickname}> {board.nickname}</p>
+            <p className={styles.boardCreatedDate}>
+              {Moment(board.createdDate).format("YYYY.MM.DD A hh:mm ")}{" "}
+            </p>
+            <SlOptionsVertical
+              className={styles.boardOptIcon}
+              onClick={onClickOption}
+            />
+          </div>
+          <hr className={styles.hr} />
+          <div className={styles.boardContentBox}>
+            <p className={styles.boardContent}>{board.content}</p>
+            <div className={styles.mobileBoardSettings}>
+              <div className={styles.boardLikedBox}>
+                {liked ? (
+                  <FaHeart
+                    className={styles.boardLikedTrueIcon}
+                    onClick={onClickLiked}
+                  />
+                ) : (
+                  <FaRegHeart
+                    className={styles.boardLikedFalseIcon}
+                    onClick={onClickLiked}
+                  />
+                )}
+                <p className={styles.boardLikedCount}>{board.likedCount}</p>
+              </div>
+            </div>
+          </div>
+          <hr className={styles.hr} />
+        </div>
       ) : (
-        <div className={styles.pcBoardPage} key={board.id}>
+        <div className={styles.BoardPage} key={board.id}>
           <MdOutlineArrowBack
             className={styles.boardBackIcon}
             onClick={onClickBack}

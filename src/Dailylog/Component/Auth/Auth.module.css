@@ -175,6 +175,11 @@ input[type="radio"] {
   accent-color: black;
 }
 /* mobile */
+.mobileLoginPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .mobileSignUpForm {
   display: flex;
   flex-direction: column;

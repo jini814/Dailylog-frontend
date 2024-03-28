@@ -41,7 +41,7 @@ function BoardListLayout() {
   return (
     <>
       {isMobile ? (
-        <div className={styles.mobileBoardList}>
+        <div className={styles.mobileBoard}>
           <BoardList />
           <div className={styles.mobileBoardMenu}>
             <Friend />
@@ -64,9 +64,12 @@ function BoardPageLayout() {
   return (
     <>
       {isMobile ? (
-        <div className={styles.mobileBoardPage}>
-          <Navbar />
-          <BoardList />
+        <div className={styles.mobileBoard}>
+          <BoardPage />
+          <div className={styles.mobileBoardMenu}>
+            <Friend />
+            <Navbar />
+          </div>
         </div>
       ) : (
         <div className={styles.pcBoardPage}>

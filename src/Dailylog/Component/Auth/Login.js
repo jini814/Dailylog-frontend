@@ -34,7 +34,6 @@ function Login() {
   };
 
   const onClickFormSubmit = (e) => {
-    console.log(loginForm);
     e.preventDefault();
     logIn(loginForm)
       .then((response) => {

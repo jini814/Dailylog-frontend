@@ -13,7 +13,7 @@ export function boardList(pageForm) {
 
 export function boardShow(boardId) {
   return request({
-    url: API_URL + "/boards/check/" + boardId,
+    url: API_URL + "/boards/post/" + boardId,
     method: "GET",
   });
 } //게시글 단일 불러오기 요청
@@ -36,7 +36,7 @@ export function boardEdit(boardForm, boardId) {
 
 export function boardDelete(boardId) {
   return request({
-    url: API_URL + "/boards/delete" + boardId,
+    url: API_URL + "/boards/post" + boardId,
     method: "DELETE",
   });
 } //게시글 삭제 요청
