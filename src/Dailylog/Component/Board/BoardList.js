@@ -6,6 +6,7 @@ import { checkIfLoggedIn } from "../../Service/AuthService";
 import { boardList } from "../../Service/BoradService";
 
 import styles from "./BoardPage.module.css";
+import logo_image from "../../Image/logo.png";
 import no_image from "../../Image/no_image.png";
 import user_image from "../../Image/user.png";
 import { SlOptionsVertical } from "react-icons/sl";
@@ -37,13 +38,14 @@ function BoardList() {
 
   useEffect(() => {
     setBoardsList(TestBoard);
-    //fetchBoardList();
+    fetchBoardList();
   }, []);
 
   const fetchBoardList = () => {
     boardList(pageForm)
       .then((response) => {
         setBoardsList(response.content);
+        console.log(response);
       })
       .catch((e) => {
         console.log(e);
@@ -92,14 +94,17 @@ function BoardList() {
   return (
     <>
       {isMobile ? (
-        <div className={styles.mobileMainPage}>모바일 BoardList</div>
-      ) : (
-        <div className={styles.pcBoardList}>
+        <div className={styles.mobileBoardList}>
           <RxPencil1
-            className={styles.boardCreateBtn}
+            className={styles.mobileBoardCreateBtn}
             onClick={onClickCreate}
           />
-          <div className={styles.boardOptBox}>
+          <div className={styles.mobileBoardTop}>
+            <img className={styles.logoImg} src={logo_image} alt='Logo'></img>
+            <img className={styles.userImg} src={user_image} alt='User'></img>
+          </div>
+
+          <div className={styles.mobileBoardOptBox}>
             <button
               className={
                 activeButton === "recommend"
@@ -121,7 +126,158 @@ function BoardList() {
               팔로우
             </button>
           </div>
-          <div className={styles.boardList}>
+          <div className={styles.mobileBoard}>
+            {activeButton === "recommend" && (
+              <>
+                {boardsList.map((board, index) => (
+                  <div
+                    key={index}
+                    className={styles.mobileboardItem}
+                    onClick={() => onClickBoard(board.boardId)}
+                  >
+                    {board.boardType === "text_board" ? (
+                      <div className={styles.mobileListNoImgBox}>
+                        <img
+                          className={styles.mobileListNoImg}
+                          src={no_image}
+                          alt='no Image'
+                        ></img>
+                      </div>
+                    ) : (
+                      <img
+                        className={styles.mobileListImg}
+                        src={board.storedImgUrl}
+                        alt='Image'
+                      />
+                    )}
+                    <div className={styles.listBox}>
+                      {!board.storedImgUrl ? (
+                        <img
+                          className={styles.listUserImg}
+                          src={user_image}
+                          alt='user_image'
+                          onClick={onClickUserProfile}
+                        />
+                      ) : (
+                        <img
+                          className={styles.listUserImg}
+                          src={board.storedImageUrl}
+                          alt='Image'
+                          onClick={onClickUserProfile}
+                        />
+                      )}
+                      <div className={styles.listContentBox}>
+                        <h3 className={styles.mobileListTitle}>
+                          {board.title}
+                        </h3>
+                        <p className={styles.listNickname}>{board.nickname}</p>
+                        <p className={styles.listContent}>
+                          {Moment(board.createdDate).format("YYYY.MM.DD")}
+                        </p>
+                        <p className={styles.listContent}>
+                          좋아요 {board.likedCount} 댓글 {board.commentCount}
+                        </p>
+                      </div>
+
+                      <SlOptionsVertical
+                        className={styles.listOptIcon}
+                        onClick={onClickOption}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+            {activeButton === "follow" && (
+              <>
+                {boardsList.map((board, index) => (
+                  <div
+                    key={index}
+                    className={styles.boardItem}
+                    onClick={() => onClickBoard(board.boardId)}
+                  >
+                    {board.boardType === "text_board" ? (
+                      <div className={styles.listNoImgBox}>
+                        <img
+                          className={styles.listNoImg}
+                          src={no_image}
+                          alt='no Image'
+                        ></img>
+                      </div>
+                    ) : (
+                      <img
+                        className={styles.listImg}
+                        src={board.storedImgUrl}
+                        alt='Image'
+                      />
+                    )}
+                    <div className={styles.listBox}>
+                      {!board.storedImgUrl ? (
+                        <img
+                          className={styles.listUserImg}
+                          src={user_image}
+                          alt='user_image'
+                          onClick={onClickUserProfile}
+                        />
+                      ) : (
+                        <img
+                          className={styles.listUserImg}
+                          src={board.storedImgUrl}
+                          alt='Image'
+                          onClick={onClickUserProfile}
+                        />
+                      )}
+                      <div className={styles.listContentBox}>
+                        <h3 className={styles.listTitle}>{board.title}</h3>
+                        <p className={styles.listNickname}>{board.nickname}</p>
+                        <p className={styles.listContent}>
+                          {Moment(board.createdDate).format("YYYY.MM.DD")}
+                        </p>
+                        <p className={styles.listContent}>
+                          좋아요 {board.likedCount} 댓글 {board.commentCount}
+                        </p>
+                      </div>
+
+                      <SlOptionsVertical
+                        className={styles.listOptIcon}
+                        onClick={onClickOption}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className={styles.pcBoardList}>
+          <RxPencil1
+            className={styles.boardCreateBtn}
+            onClick={onClickCreate}
+          />
+          <div className={styles.pcBoardOptBox}>
+            <button
+              className={
+                activeButton === "recommend"
+                  ? `${styles.boardOpt} ${styles.boardOptActive}`
+                  : styles.boardOpt
+              }
+              onClick={onClickRecommend}
+            >
+              추천
+            </button>
+            <button
+              className={
+                activeButton === "follow"
+                  ? `${styles.boardOpt} ${styles.boardOptActive}`
+                  : styles.boardOpt
+              }
+              onClick={onClickFollow}
+            >
+              팔로우
+            </button>
+          </div>
+          <div className={styles.board}>
             {activeButton === "recommend" && (
               <>
                 {boardsList.map((board, index) => (

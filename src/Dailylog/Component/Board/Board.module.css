@@ -4,18 +4,24 @@
   padding: 0 20px;
   box-sizing: border-box;
 }
-/*BoardPage.js*/
-.pcBoardPage {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: 150px 950px; /* 2개의 열을 가진 그리드를 생성 */
-  margin: 20px;
-}
 /*BoardCreate.js*/
+.mobilePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
 .pcPage {
   width: 1024px;
   margin: 50px auto;
   border: 1px solid #bcbcbc;
+}
+.mobileCreateForm {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px 0;
+  gap: 10px;
 }
 .createForm {
   display: flex;
@@ -24,10 +30,23 @@
   padding: 10px 0;
   gap: 10px;
 }
+.mobileCreateFormContent {
+  width: 90%;
+  height: 100%;
+  padding: 5px;
+  margin: auto;
+}
 .createFormContent {
   width: 950px;
   padding: 5px 30px;
   margin: auto;
+}
+.mobileFormTitle {
+  width: 100%;
+  font-size: 22px;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #b7b7b7;
 }
 .formTitle {
   width: 950px;
@@ -35,6 +54,15 @@
   padding: 10px 0;
   border: none;
   border-bottom: 1px solid #b7b7b7;
+}
+.mobileFormOption {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 15px;
+  margin-top: auto;
+  border-top: 1px solid #bcbcbc;
+  gap: 10px;
 }
 .formOption {
   display: flex;
@@ -56,6 +84,13 @@
   cursor: pointer;
   margin-left: -8px;
 }
+.mobileFormContent {
+  height: 80%;
+  font-size: 15px;
+  padding: 10px 0;
+  border: none;
+  resize: none;
+}
 .formContent {
   width: 950px;
   height: 400px;
@@ -67,6 +102,13 @@
 .formTitle::placeholder,
 .formContent::placeholder {
   color: #bcbcbc;
+}
+.mobileFormBtn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0 0;
+  margin: 0 16px;
 }
 .formBtn {
   display: flex;
@@ -85,6 +127,24 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
+.cancelIcon {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  text-decoration: none;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.mobilePrevBtn {
+  background-color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #bcbcbc;
+  border-radius: 8px;
+  margin: 0 15px 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
 .prevBtn {
   background-color: white;
   text-decoration: none;
@@ -92,6 +152,16 @@
   border: 1px solid #bcbcbc;
   border-radius: 2px;
   margin: 0 15px 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.mobileSubmitBtn {
+  color: white;
+  background-color: #333333;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #333333;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }

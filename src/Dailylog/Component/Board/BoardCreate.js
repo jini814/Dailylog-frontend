@@ -5,6 +5,7 @@ import { boardWrite } from "../../Service/BoradService";
 
 import styles from "./Board.module.css";
 import { FaRegImage, FaVideo } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 
 function BoardCreate() {
   const navigate = useNavigate();
@@ -72,7 +73,67 @@ function BoardCreate() {
   return (
     <>
       {isMobile ? (
-        <div className={styles.mobilePage}>dd</div>
+        <div className={styles.mobilePage}>
+          <form
+            className={styles.mobileCreateForm}
+            onSubmit={onClickFormSubmit}
+          >
+            <div className={styles.mobileFormBtn}>
+              <RxCross2
+                className={styles.cancelIcon}
+                onClick={onClickCancelButton}
+              />
+              <button
+                className={styles.mobilePrevBtn}
+                type='button'
+                onClick={onClickTemporarySaveButton}
+              >
+                임시저장
+              </button>
+              <button className={styles.mobileSubmitBtn} type='submit'>
+                등록
+              </button>
+            </div>
+            <div className={styles.mobileCreateFormContent}>
+              <input
+                className={styles.mobileFormTitle}
+                type='text'
+                id='title'
+                name='title'
+                placeholder='제목을 입력하세요.'
+                required
+                value={boardForm.title}
+                onChange={handleBoardFormChange}
+              />
+            </div>
+
+            <div className={styles.mobileCreateFormContent}>
+              <textarea
+                className={styles.mobileFormContent}
+                id='content'
+                name='content'
+                placeholder='내용을 입력하세요.'
+                required
+                value={boardForm.content}
+                onChange={handleBoardFormChange}
+              />
+            </div>
+            <div className={styles.mobileFormOption}>
+              <>
+                <FaRegImage className={styles.optionIcon} />
+                <button className={styles.optionBtn} onClick={onClickImage}>
+                  사진
+                </button>
+              </>
+              <>
+                <FaVideo className={styles.optionIcon} />
+                <button className={styles.optionBtn} onClick={onClickVideo}>
+                  동영상
+                </button>
+              </>
+            </div>
+          </form>
+        </div>
       ) : (
         <div className={styles.pcPage}>
           <form className={styles.createForm} onSubmit={onClickFormSubmit}>

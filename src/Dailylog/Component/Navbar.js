@@ -50,10 +50,10 @@ function Navbar() {
   return (
     <>
       {isMobile ? (
-        <div className={styles.mobileNavbar}>
-          <AiOutlineHome className={styles.homeIcon} />
-          <FiUser className={styles.userIcon} />
-        </div>
+        <>
+          <AiOutlineHome className={styles.mobileHomeIcon} />
+          <FiUser className={styles.mobileUserIcon} />
+        </>
       ) : (
         <div className={styles.pcNavbar}>
           <img className={styles.logoImg} src={logo_image} alt='Logo'></img>

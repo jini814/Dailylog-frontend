@@ -1,4 +1,4 @@
-export const API_URL = "http://15.164.232.138:8080";
+export const API_URL = "http://3.34.126.192:8080";
 
 export const ACCESS_TOKEN = "accessToken";
 export const ACCESS_TOKEN_EXPIRED_MESC = 86400;

@@ -13,9 +13,9 @@ function Friend() {
   return (
     <>
       {isMobile ? (
-        <div className={styles.mobilePage}>
+        <>
           <IoMdSearch className={styles.mobileSearchIcon} />
-        </div>
+        </>
       ) : (
         <div className={styles.pcFriend}>
           <div className={styles.searchBox}>
